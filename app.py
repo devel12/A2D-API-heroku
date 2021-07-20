@@ -1,5 +1,5 @@
 import pandas as pd
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template
 import pickle
 
 import warnings
@@ -18,6 +18,11 @@ if __name__=='__main__':
 app = Flask(__name__)
 
 # routes
+
+@app.route('/')
+def home():
+    return render_template('index.html')
+    
 @app.route('/', methods=['POST'])
 
 def predict():
@@ -38,4 +43,4 @@ def predict():
     return jsonify(results=output)
 
 if __name__ == '__main__':
-    app.run(port = 5000, debug=True)
+    app.run(port =5000, debug=True)
