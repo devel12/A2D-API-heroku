@@ -1,8 +1,6 @@
 import pandas as pd
 from flask import Flask, jsonify, request, render_template
 import pickle
-from flask_ngrok import run_with_ngrok
-
 
 import warnings
 warnings.filterwarnings('ignore')
@@ -18,9 +16,8 @@ if __name__=='__main__':
 
 # app
 app = Flask(__name__)
-run_with_ngrok(app)
-# routes
 
+# routes
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -45,4 +42,4 @@ def predict():
     return jsonify(results=output)
 
 if __name__ == '__main__':
-    app.run()
+    app.run(port = 5000, debug=True)
